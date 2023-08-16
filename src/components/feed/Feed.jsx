@@ -1,14 +1,18 @@
 import Post from '../post/Post';
 import Share from '../share/Share';
 import './feed.css'
-// import { Search, Person, Chat, Notifications} from "@mui/icons-material"
+import { Posts } from "../../dummyData.js"
 
 export default function Feed() {
     return (
         <div className='feedContainer' >
             <div className="feedWrapper">
                 <Share />
-                <Post />
+                {Posts.map(p => {
+                   return <Post key={p.id} post={p} />
+                })}
+
+
             </div>
 
 
