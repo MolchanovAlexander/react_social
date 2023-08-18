@@ -1,12 +1,73 @@
 import './rightbar.css'
-// import { Search, Person, Chat, Notifications} from "@mui/icons-material"
+import { Users } from "../../dummyData.js"
+import Online from '../online/Online';
 
-export default function Rightbar() {
+export default function Rightbar({ profile }) {
+    const HomeRightbar = () => {
+        return (
+            <>
+                <div className="birthdayContainer">
+                    <img src="/assets/gift.png" alt="" className="birthdayImg" />
+                    <span className="birthdayText">
+                        <b> Guf RIP</b> and <b>3 other friends</b>  have a birthday today.</span>
+                </div>
+                <img src="/assets/ad.png" alt="" className="rightbarAds" />
+                <h4 className="rightbarTitle">Oline Friends</h4>
+                <ul className="rightbarFriendList">
+                    {Users.map(u => (
+                        <Online key={u.id} user={u} />
+                    ))}
+                </ul>
+            </>
+        )
+    }
+    const ProfileRightbar = () => {
+        return (
+            <>
+                <h4 className="userInformationTitle">info title</h4>
+                <div className="rightbarInfo">
+                    <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">City:</span>
+                        <span className="rightbarInfoValue">Svitlovodsk</span>
+                    </div>
+                    <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">From:</span>
+                        <span className="rightbarInfoValue">Madrid</span>
+                    </div>
+                    <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">Relationship:</span>
+                        <span className="rightbarInfoValue">True</span>
+                    </div>
+                </div>
+                <h4 className="userInformationTitle">user followings</h4>
+                <div className="rightbarFollowings">
+                    <div className="rightbarFollowing">
+                        <img src="/assets/person/9.jpg" alt="" className="rightbarFollowingImg" />
+                        <span className="rightbarFollowingName">Liam Nison</span>
+                    </div>
+                    <div className="rightbarFollowing">
+                        <img src="/assets/person/10.jpg" alt="" className="rightbarFollowingImg" />
+                        <span className="rightbarFollowingName">Liam Nison</span>
+                    </div>
+                    <div className="rightbarFollowing">
+                        <img src="/assets/person/7.jpg" alt="" className="rightbarFollowingImg" />
+                        <span className="rightbarFollowingName">Liam Nison</span>
+                    </div>
+                    <div className="rightbarFollowing">
+                        <img src="/assets/person/5.jpg" alt="" className="rightbarFollowingImg" />
+                        <span className="rightbarFollowingName">Liam Nison</span>
+                    </div>
+                </div>
+
+
+            </>
+        )
+    }
     return (
         <div className='rightbarContainer' >
-            rightbar
-
-
+            <div className="rightbarWrapper">
+            {profile ? <ProfileRightbar /> : <HomeRightbar />}
+            </div>
         </div>
     );
 }
