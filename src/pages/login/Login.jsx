@@ -2,13 +2,27 @@
 // import Rightbar from "../../components/rightbar/Rightbar";
 // import Sidebar from "../../components/sidebar/Sidebar";
 // import Topbar from "../../components/topbar/Topbar";
+import { useContext, useRef } from 'react';
 import './login.css'
+import { loginCall } from '../../apiCalls';
+import { AuthContext } from '../../context/AuthContext';
 
 
 export default function Login() {
+    const email = useRef()
+    const password = useRef()
+    const { user, isFetching, error, dispatch } = useContext(AuthContext)
+    
+    const handleClick = (e) => {
+        e.preventDefault()
+        loginCall({email: email.current.value, password: password.current.value }, dispatch)
+        
+        
+    }
+    console.log( isFetching);
     return (
         <>
-            
+
             <div className="loginContainer">
                 <div className="loginWrapper">
                     <div className="loginLeft">
@@ -18,16 +32,27 @@ export default function Login() {
                         </span>
                     </div>
                     <div className="loginRight">
-                        <div className="loginBox">
-                            <input placeholder="Email" className="loginInput" />
-                            <input placeholder="Password" className="loginInput" />
-                            <button className="loginButton">Log In</button>
+                        <form className="loginBox" onSubmit={handleClick}>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                className="loginInput"
+                                required
+                                ref={email} />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                className="loginInput"
+                                required
+                                minLength={6}
+                                ref={password} />
+                            <button className="loginButton">{isFetching+ "Log In"}</button>
                             <span className="loginForgot">Forgot Password?</span>
                             <button className="loginRegisterButton">Create a New Account</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
-                
+
             </div>
 
         </>
