@@ -7,13 +7,13 @@ import {
 
 export const loginCall = async (userCredential, dispatch) => {
     dispatch({ type: LOGIN_START });
-    console.log("dispatch");
+    //console.log("dispatch");
     try {
         const res = await axios.post("/auth/login", userCredential);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        console.log(res.data);
+        //console.log(res.data);
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         dispatch({ type: LOGIN_FAILURE, payload: err });
     }
 };

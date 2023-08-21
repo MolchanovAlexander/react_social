@@ -5,8 +5,9 @@ import {
 } from "./AuthActions"
 
 const AuthReducer = (state, action) => {
-    console.log(action);
-    switch (action) {
+    console.log(action.type+ " log");
+    console.log(state.isFetching+ " log");
+    switch (action.type) {
         case LOGIN_START:
             return {
                 user: null,
