@@ -1,16 +1,19 @@
 import './topbar.css'
-import { Search, Person, Chat, Notifications} from "@mui/icons-material"
+import { Search, Person, Chat, Notifications } from "@mui/icons-material"
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Topbar() {
+    const { user } = useContext(AuthContext)
     return (
         <div className='topbarContainer' >
             <div className="topbarLeft">
-                <Link to = "/" style={{textDecoration:"none"}}><span className="logo">SalatSocial</span></Link>
+                <Link to="/" style={{ textDecoration: "none" }}><span className="logo">SalatSocial</span></Link>
             </div>
             <div className="topbarCenter">
                 <div className="searchBar">
-                    <Search className='searchIcon'/>
+                    <Search className='searchIcon' />
                     <input className='searchInput' placeholder='Search for friends, post of video' />
                 </div>
             </div>
@@ -21,19 +24,24 @@ export default function Topbar() {
                 </div>
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
-                        <Person/>
+                        <Person />
                         <span className="topbarIconBadge">1</span>
                     </div>
                     <div className="topbarIconItem">
-                        <Chat/>
+                        <Chat />
                         <span className="topbarIconBadge">1</span>
                     </div>
                     <div className="topbarIconItem">
-                        <Notifications/>
+                        <Notifications />
                         <span className="topbarIconBadge">1</span>
                     </div>
                 </div>
-                <img src="/assets/person/1.jpg" alt="" className="topbarImg" />
+                <Link to={`/profile/${user.username}`}>
+                    <img
+                        src={user.profilePicture || "/assets/person/noAvatar.png"}
+                        alt="" className="topbarImg" />
+                </Link>
+
             </div>
 
 
