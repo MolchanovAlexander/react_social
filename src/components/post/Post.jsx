@@ -10,8 +10,12 @@ export default function Post({ post }) {
     const [like, setLike] = useState(post.likes.length)
     const [isLiked, setIsLiked] = useState(false)
     const [user, setUser] = useState({})
-    console.log(post, user);
+    
     const { user: currentUser } = useContext(AuthContext)
+    useEffect(() => {
+        setIsLiked(post.likes.includes(currentUser._id))
+        
+    }, [post.likes,currentUser._id])
 
     useEffect(() => {
 
@@ -22,10 +26,10 @@ export default function Post({ post }) {
 
         fetchUser()
     }, [post.userId])
-
-    const likeHandler = () => {
+console.log(post, user, currentUser);
+    const likeHandler = async() => {
         try {
-            axios.put("/posts" + post.id + "/like", {userId: currentUser._id})
+           await axios.put("/posts/" + post._id + "/like", {userId: currentUser._id})
         } catch (err) {
 
         }
