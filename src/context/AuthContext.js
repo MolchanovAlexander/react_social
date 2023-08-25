@@ -8,7 +8,6 @@ const INITIAL_STATE = {
         username: "test",
         profilePicture:"/assets/person/5.jpg",
         email: "test@guf.com",
-        profilePicture: "",
         coverPicture: "",
         followers: [],
         followings: [],
@@ -22,7 +21,7 @@ export const AuthContext = createContext(INITIAL_STATE)
 
 export const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
-
+        
     return (
         <AuthContext.Provider value={{
             user: state.user,

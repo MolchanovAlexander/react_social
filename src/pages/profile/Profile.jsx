@@ -12,7 +12,7 @@ import { useParams } from 'react-router';
 export default function Profile() {
 
     const [user, setUser] = useState({})
-console.log(user);
+
 
 const username = useParams().username
 
@@ -25,6 +25,7 @@ const username = useParams().username
 
         fetchUser()
     },[username])
+    //console.log(user);
     return (
         <>
             <Topbar />

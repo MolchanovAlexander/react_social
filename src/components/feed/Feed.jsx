@@ -22,7 +22,7 @@ export default function Feed({ username }) {
 
         fetchPosts()
     }, [username,  user._id])
-
+    console.log(posts);
     return (
         <div className='feedContainer' >
             <div className="feedWrapper">

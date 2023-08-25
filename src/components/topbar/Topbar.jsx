@@ -4,8 +4,9 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function Topbar() {
+export default function Topbar({authUser}) {
     const { user } = useContext(AuthContext)
+    
     return (
         <div className='topbarContainer' >
             <div className="topbarLeft">

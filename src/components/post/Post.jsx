@@ -26,7 +26,7 @@ export default function Post({ post }) {
 
         fetchUser()
     }, [post.userId])
-console.log(post, user, currentUser);
+//console.log(post, user, currentUser);
     const likeHandler = async() => {
         try {
            await axios.put("/posts/" + post._id + "/like", {userId: currentUser._id})
