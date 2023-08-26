@@ -41,7 +41,7 @@ export default function Share() {
                             <input
                                 style={{ display: "none" }}
                                 type="file"
-                                 
+                                 name="file"
                                 id='file'
                                 accept='.png,.jpg,.jpeg'
                                 onChange={(e) => setFile(e.target.files[0])}
