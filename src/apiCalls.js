@@ -17,3 +17,5 @@ export const loginCall = async (userCredential, dispatch) => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
     }
 };
+
+export const PF = process.env.REACT_APP_PUBLIC_FOLDER;

@@ -6,7 +6,7 @@ import Topbar from '../../components/topbar/Topbar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router';
-// import { Users } from "../../dummyData.js"
+import { PF } from "../../apiCalls"
 // import Online from '../online/Online';
 
 export default function Profile() {
@@ -25,7 +25,8 @@ const username = useParams().username
 
         fetchUser()
     },[username])
-    //console.log(user);
+    
+    //console.log(PF);
     return (
         <>
             <Topbar />
@@ -34,8 +35,8 @@ const username = useParams().username
                 <div className="profileRight">
                     <div className="profileRightTop">
                         <div className="profileCover">
-                            <img src={user.coverPicture || "/assets/person/noCover.png"} alt="" className="profileCoverImg" />
-                            <img src={user.profilePicture || "/assets/person/noAvatar.png"} alt="" className="profileUserImg" />
+                            <img src={user.coverPicture || PF + "/person/noCover.png"} alt="" className="profileCoverImg" />
+                            <img src={user.profilePicture || PF + "/person/noAvatar.png"} alt="" className="profileUserImg" />
                         </div>
                         <div className="profileInfo">
                             <h4 className="profileInfoName"> {user.username} </h4>

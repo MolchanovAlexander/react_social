@@ -3,10 +3,11 @@ import { Search, Person, Chat, Notifications } from "@mui/icons-material"
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { PF } from "../../apiCalls"
 
-export default function Topbar({authUser}) {
+export default function Topbar() {
     const { user } = useContext(AuthContext)
-    
+
     return (
         <div className='topbarContainer' >
             <div className="topbarLeft">
@@ -39,7 +40,7 @@ export default function Topbar({authUser}) {
                 </div>
                 <Link to={`/profile/${user.username}`}>
                     <img
-                        src={user.profilePicture || "/assets/person/noAvatar.png"}
+                        src={user.profilePicture || PF + "/person/noAvatar.png"}
                         alt="" className="topbarImg" />
                 </Link>
 

@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { format } from 'timeago.js';
 import { Link } from "react-router-dom"
 import { AuthContext } from '../../context/AuthContext';
+import { PF } from "../../apiCalls"
 
 export default function Post({ post }) {
     const [like, setLike] = useState(post.likes.length)
@@ -44,7 +45,7 @@ export default function Post({ post }) {
                         <Link to={`/profile/${user.username}`}>
                             <img
                                 className='postProfileImg'
-                                src={user.profilePicture || "/assets/person/noAvatar.png"}
+                                src={user.profilePicture || PF + "/person/noAvatar.png"}
                                 alt="" />
                         </Link>
 

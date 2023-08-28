@@ -3,29 +3,33 @@ import './share.css'
 import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
+import { PF } from "../../apiCalls"
 
 export default function Share() {
     const { user } = useContext(AuthContext)
+
     const desc = useRef()
     const [file, setFile] = useState(null)
 
-    const handleSubmit=async (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
             userId: user._id,
             desc: desc.current.value
         }
-        try{
-           await axios.post("/posts",newPost)
-        }catch(err){
+        try {
+            await axios.post("/posts", newPost)
+        } catch (err) {
 
         }
     }
+
+    //
     return (
         <div className='shareContainer' >
             <div className="shareWrapper">
                 <div className="shareTop">
-                    <img src={user.profilePicture || "/assets/person/noAvatar.png"} alt="" className="shareProfileImg" />
+                    <img src={user.profilePicture || PF + "/person/noAvatar.png"} alt="" className="shareProfileImg" />
                     <input
                         placeholder={"What's in your mind " + user.username + " ?"}
                         className="shareInput"
@@ -41,7 +45,7 @@ export default function Share() {
                             <input
                                 style={{ display: "none" }}
                                 type="file"
-                                 name="file"
+                                name="file"
                                 id='file'
                                 accept='.png,.jpg,.jpeg'
                                 onChange={(e) => setFile(e.target.files[0])}
@@ -62,7 +66,7 @@ export default function Share() {
                         </div>
 
                     </div>
-                    <button className='shareButton'type='submit'>Share</button>
+                    <button className='shareButton' type='submit'>Share</button>
                 </form>
             </div>
 
