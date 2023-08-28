@@ -17,11 +17,21 @@ export default function Share() {
             userId: user._id,
             desc: desc.current.value
         }
-        try {
-            await axios.post("/posts", newPost)
-        } catch (err) {
-
+        if (file) {
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            newPost.img = PF +"/"+ fileName;
+            console.log(newPost);
+            try {
+                await axios.post("/upload", data);
+            } catch (err) { }
         }
+        try {
+            await axios.post("/posts", newPost);
+            window.location.reload();
+        } catch (err) { }
     }
 
     //

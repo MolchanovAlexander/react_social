@@ -27,7 +27,7 @@ export default function Post({ post }) {
 
         fetchUser()
     }, [post.userId])
-//console.log(post, user, currentUser);
+
     const likeHandler = async() => {
         try {
            await axios.put("/posts/" + post._id + "/like", {userId: currentUser._id})
@@ -62,8 +62,8 @@ export default function Post({ post }) {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img src="/assets/like.png" alt="" className="likeIcon" onClick={likeHandler} />
-                        <img src="/assets/heart.png" alt="" className="likeIcon" onClick={likeHandler} />
+                        <img src="http://localhost:8800/uploads/like.png" alt="" className="likeIcon" onClick={likeHandler} />
+                        <img src="http://localhost:8800/uploads/heart.png" alt="" className="likeIcon" onClick={likeHandler} />
                         <span className="postLikeCounter">{like} like it</span>
                     </div>
                     <div className="postBottomRight">

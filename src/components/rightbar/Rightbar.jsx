@@ -1,17 +1,19 @@
 import './rightbar.css'
 import { Users } from "../../dummyData.js"
 import Online from '../online/Online';
+import { PF } from '../../apiCalls';
 
 export default function Rightbar({ user }) {
+    console.log(user.id);
     const HomeRightbar = () => {
         return (
             <>
                 <div className="birthdayContainer">
-                    <img src="/assets/gift.png" alt="" className="birthdayImg" />
+                    <img src={`${PF}/gift.png`} alt="" className="birthdayImg" />
                     <span className="birthdayText">
                         <b> Guf RIP</b> and <b>3 other friends</b>  have a birthday today.</span>
                 </div>
-                <img src="/assets/ad.png" alt="" className="rightbarAds" />
+                <img src={`${PF}/ad.png`} alt="" className="rightbarAds" />
                 <h4 className="rightbarTitle">Oline Friends</h4>
                 <ul className="rightbarFriendList">
                     {Users.map(u => (

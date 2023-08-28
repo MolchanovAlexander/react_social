@@ -26,8 +26,7 @@ const username = useParams().username
         fetchUser()
     },[username])
     
-    //console.log(PF);
-    return (
+       return (
         <>
             <Topbar />
             <div className='profileContainer' >
