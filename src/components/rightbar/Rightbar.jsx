@@ -2,37 +2,40 @@ import './rightbar.css'
 import { Users } from "../../dummyData.js"
 import Online from '../online/Online';
 import { PF } from '../../apiCalls';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { AuthContext } from '../../context/AuthContext';
- //const { user } = useContext(AuthContext)
-export default function Rightbar({user}) {
-   
+import { AuthContext } from '../../context/AuthContext';
+import { Add, Remove } from '@mui/icons-material';
 
+export default function Rightbar({ user }) {
+    const { user: currentUser } = useContext(AuthContext)
     const [friends, setFriends] = useState([])
-
+    const [followed, setFollowed] = useState(false)
+    useEffect(()=>{
+        setFollowed(currentUser.followings.includes(user?._id))
+    })
     useEffect(() => {
-
         const getFriends = async () => {
-
             if (user._id) {
-
                 try {
-
                     const friendList = await axios.get("/users/friends/" + user._id)
                     setFriends(friendList.data)
-
                 } catch (err) {
                     console.log(err);
                 }
             }
             return;
-
         }
         getFriends();
     }, [user._id])
-    
+    const handleClick =async()=>{
+        try{
+            followed ? await axios.put("/users/"+ user._id +"/follow") : await axios.put("/users/"+ user._id +"/unfollow")
+        }catch(err){
+            console.log(err);
+        }
+    }
     const HomeRightbar = () => {
         return (
             <>
@@ -54,6 +57,13 @@ export default function Rightbar({user}) {
     const ProfileRightbar = () => {
         return (
             <>
+                {user.username !== currentUser.username && (
+                    <button className="rightbarFollowButton" onClick={handleClick}>
+                       {followed ? "Unfollow" : "Follow"}
+                       {followed ? <Remove /> : <Add />}
+                        
+                        </button>
+                )}
                 <h4 className="userInformationTitle">info title</h4>
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
